@@ -1,26 +1,38 @@
- <br>
-1. How long did you spend on the technical test? What would you add to your solution if you had more time? If you didn't spend much time on the technical test then use this as an opportunity to explain what you would add. 
- <br>
-I have spent close to 8 hours on the test.
- <br>
- If I had more time, I would have made the test solution more robust. The ads that appear randomly on different pages are difficult to navigate/handle. It requires more research to handle the ads effectively and make tests less brittle.
- <br>
-2. What do you think is the most interesting trend in test automation? 
-<br>
-More applications are adopting Node/React front-end development and using tools such as WebdriverIO and Cypress for testing are becoming increasingly popular. Also more focus on backend testing, as it more stable interface and quicker results.
- <br>
-3. Please describe yourself using JSON. 
-<br>
-{
-	"firstname": "Srikrishna",
-	"lastname": "Peddinti",
-	"BirthDate": "11-06-1976",
-	"nationality": "British",
-	"profession": "SDET",
-	"skills": [
-		"Java",
-		"Ruby",
-    "Javascript"
-	]
-}
+
+This is a Java Maven project composed in IntelliJ IDE. 
+You can run these tests using one of the following wys:
+
+-Maven
+
+-IntelliJ
+
+Using Maven from command line:
+
+1. Cloning the project:
+Copy the following URL:
+https://github.com/psrikrishna/eurosport/
+
+2. Create a local directory.
+In a local directory, clone the project:
+git clone https://github.com/psrikrishna/eurosport.git
+
+3. Change directory into the project:
+cd eurosport
+
+4. Download the Maven dependencies using the following command:
+mvn clean install -DskipTests=true
+
+5. Run the tests using the following command:
+mvn clean verify
+
+The above command will run all the tests by default.
+
+Using IntelliJ:
+
+1. In the src/main/java/runners, open AllFeaturesRunner or VideosFeatureRunner.
+
+2. Right-click in the runner file.
+
+3. Click Run.
+
 
