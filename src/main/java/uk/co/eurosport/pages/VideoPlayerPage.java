@@ -24,6 +24,9 @@ public class VideoPlayerPage extends Browser {
     @FindBy(css = "#vjs_video_3_html5_api")
     static WebElement playingVideo;
 
+    @FindBy(css = "video__skip")
+    static WebElement waitToSkipAdButton;
+
     @FindBy(css = "video__skip video__skip--skippable")
     static WebElement skipAdButton;
 
@@ -41,28 +44,33 @@ public class VideoPlayerPage extends Browser {
         PageFactory.initElements(this.driver, this);
     }
 
-    public void verifyControls(List<String> controls) {
+    public void verifyControls(List<String> controls) throws InterruptedException {
         Actions builder = new Actions(driver);
         builder.moveToElement(playingVideo).build().perform();
 
         for (String control : controls) {
             switch (control) {
                 case "Play":
+                    try {
+                        if (waitToSkipAdButton.isDisplayed()) {
+                            Thread.sleep(10000);
+                        }
+                    } catch (NoSuchElementException e) {
+                    }
+
+                    try {
+                        if (skipAdButton.isDisplayed()) {
+                            Thread.sleep(10000);
+                        }
+                    } catch (NoSuchElementException e) {
+                    }
+
                     builder.moveToElement(playingVideo).build().perform();
                     checkElementVisibility(driver, playButton);
                     Assert.assertTrue(playButton.isDisplayed());
                     playButton.click();
                     break;
-                     //implicit wait because we need to wait atleast 5 seconds before we can click skipAd
                 case "Pause":
-                    driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS) ;
-                    try {
-                        if (skipAdButton.isDisplayed()) {
-                            skipAdButton.click();
-                        }
-                    } catch (NoSuchElementException e) {
-                    }
-
                     Assert.assertTrue(pauseButton.isDisplayed());
                     break;
                 case "Maximize":
@@ -70,5 +78,6 @@ public class VideoPlayerPage extends Browser {
                     break;
             }
         }
+        driver.quit();
     }
 }

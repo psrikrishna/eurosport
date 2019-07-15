@@ -11,7 +11,7 @@ import java.util.Properties;
 /**
  * Created by Krishna on 14/07/2019.
  */
-public class WebApp extends Browser {
+public class WebApp {
     /* WebDriver variables */
     private static WebDriver driver = null;
     private static WebApp instance = null;
@@ -39,7 +39,7 @@ public class WebApp extends Browser {
 
     public static WebDriver getDriver() {
         if (driver == null) {
-            driver = initializeDriver();
+            driver = Browser.initializeDriver();
         }
         return driver;
     }
